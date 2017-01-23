@@ -4,10 +4,7 @@ var helpers = require('../utils/helpers');
 
 var ShowCityContainer = React.createClass({
     getInitialState: function() {
-        return {
-            isLoading: true,
-            forecastData: {}
-        }
+        return {isLoading: true, forecastData: {}}
     },
     componentDidMount: function() {
         this.makeRequest(this.props.routeParams.city)
@@ -16,26 +13,19 @@ var ShowCityContainer = React.createClass({
         this.makeRequest(nextProps.routeParams.city)
     },
     makeRequest: function(city) {
-        helpers.getForecast(city)
-            .then(function(forecastData) {
-                this.setState({
-                    isLoading: false,
-                    forecastData: forecastData
-                });
-            }.bind(this));
+        helpers.getForecast(city).then(function(forecastData) {
+            console.log("weather")
+            this.setState({isLoading: false, forecastData: forecastData});
+        }.bind(this));
     },
     render: function() {
-        return ( <
-            ShowCity city = {
-                this.props.routeParams.city
-            }
-            isLoading = {
-                this.state.isLoading
-            }
-            forecastData = {
-                this.state.forecastData
-            }
-            />
+        return (
+            <ShowCity
+                city = {this.props.routeParams.city}
+                isLoading = {this.state.isLoading}
+                forecastData = {this.state.forecastData}/>
         )
     }
 })
+
+module.exports = ShowCityContainer;
