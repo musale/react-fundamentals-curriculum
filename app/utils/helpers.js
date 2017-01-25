@@ -32,6 +32,7 @@ function getForecast(city) {
 
     return axios.get(url).then(function(forecastData) {
         console.log(forecastData.data)
+        return forecastData.data
     }).catch(function(err) {
         console.warn("Error getting forecast data: ", err);
     })
