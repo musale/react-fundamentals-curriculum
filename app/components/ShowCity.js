@@ -2,6 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var Loading = require('../components/Loading');
 var helpers = require('../utils/weatherUtils');
+var DayItem = require('./DayItem');
 var getDate = helpers.getDate;
 var convertTemp = helpers.convertTemp;
 
@@ -38,24 +39,16 @@ var styles = {
     }
 }
 
-function DayItem(props) {
-    var date = getDate(props.day.dt);
-    var icon = props.day.weather[0].icon;
-    return (
-        <div style={styles.dayContainer}>
-            <img style={styles.weather} src={'./app/images/weather-icons/' + icon + '.svg'} alt='Weather'/>
-            <h2 style={styles.subheader}>{date}</h2>
-        </div>
-    )
-}
-
 function ForecastUI(props) {
     return (
         <div>
             <h1 style={styles.header}>{props.city}</h1>
             <div style={styles.container}>
                 {props.forecast.list.map(function(listItem) {
-                    return <DayItem key={listItem.dt} day={listItem}/>
+                    return <DayItem
+                                key={listItem.dt}
+                                day={listItem}
+                                handleClick={props.handleClick.bind(null, listItem)} />
                 })}
             </div>
         </div>
@@ -65,13 +58,17 @@ function ForecastUI(props) {
 function ShowCity(props) {
     return props.isLoading === true
         ? <Loading speed={300} text="Getting Weather Data"/>
-        : <ForecastUI city={props.city} forecast={props.forecastData}/>
+        : <ForecastUI
+                city={props.city}
+                forecast={props.forecastData}
+                handleClick={props.handleClick}/>
 }
 
 ShowCity.propTypes = {
     city: PropTypes.string.isRequired,
     forecastData: PropTypes.object.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    handleClick: PropTypes.func
 }
 
 module.exports = ShowCity;
