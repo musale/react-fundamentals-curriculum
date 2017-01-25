@@ -14,7 +14,6 @@ var ShowCityContainer = React.createClass({
     },
     makeRequest: function(city) {
         helpers.getForecast(city).then(function(forecastData) {
-            console.log("weather")
             this.setState({isLoading: false, forecastData: forecastData});
         }.bind(this));
     },
