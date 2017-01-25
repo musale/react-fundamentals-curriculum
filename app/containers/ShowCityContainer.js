@@ -3,6 +3,9 @@ var ShowCity = require('../components/ShowCity');
 var helpers = require('../utils/helpers');
 
 var ShowCityContainer = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
     getInitialState: function() {
         return {isLoading: true, forecastData: {}}
     },
@@ -17,13 +20,16 @@ var ShowCityContainer = React.createClass({
             this.setState({isLoading: false, forecastData: forecastData});
         }.bind(this));
     },
+    handleClick: function(weather) {
+        this.context.router.push({
+            pathname: '/detail/' + this.props.routeParams.city,
+            state: {
+                weather: weather
+            }
+        })
+    },
     render: function() {
-        return (
-            <ShowCity
-                city = {this.props.routeParams.city}
-                isLoading = {this.state.isLoading}
-                forecastData = {this.state.forecastData}/>
-        )
+        return (<ShowCity handleClick={this.handleClick} city={this.props.routeParams.city} isLoading={this.state.isLoading} forecastData={this.state.forecastData}/>)
     }
 })
 
