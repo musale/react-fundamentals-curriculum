@@ -3,8 +3,9 @@ var CityDetail = require('../components/CityDetail');
 
 var CityDetailContainer = React.createClass({
     render: function() {
-        return (
-            <CityDetail />
+        return (<CityDetail
+            weather={this.props.location.state.weather}
+            city={this.props.routeParams.city}/>
         )
     }
 })
