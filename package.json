@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "deploy": "npm run production&&gh-pages -d build"
   },
+  "homepage": "https://github.com/musale/react-fundamentals-curriculum",
   "repository": {
     "type": "git",
     "url": "git@github.com:musale/react-fundamentals-curriculum.git"
@@ -16,12 +18,12 @@
   "bugs": {
     "url": "https://github.com/musale/react-fundamentals-curriculum/issues"
   },
-  "homepage": "https://github.com/musale/react-fundamentals-curriculum#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-preset-react": "^6.22.0",
     "css-loader": "^0.26.1",
+    "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.26.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0",
