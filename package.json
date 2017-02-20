@@ -11,7 +11,7 @@
   "homepage": "https://github.com/musale/react-fundamentals-curriculum",
   "repository": {
     "type": "git",
-    "url": "git@github.com:musale/react-fundamentals-curriculum.git"
+    "url": "git+https://github.com/musale/react-fundamentals-curriculum.git"
   },
   "author": "Martin Musale<martinmshale@gmail.com> (http://martinmusale.com)",
   "license": "ISC",
